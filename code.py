@@ -1,4 +1,4 @@
-# Функция сортировки пузырьком
+#1) Функция сортировки пузырьком
 def bubble_sort(arr): 
     n = len(arr)      
     for i in range(n):
@@ -12,7 +12,7 @@ bubble_sort(arr)
 print("Отсортированный массив:", arr)
 #При запуске кода на python на примере массив [64, 34, 25, 12, 22, 11, 90], получим отсортированный массив  [11, 12, 22, 25, 34, 64, 90].
 
-#Сортировка вставками
+#2)Сортировка вставками
 def insertion_sort(arr):
 	for i in range(1, len(arr)):
     	key = arr[i]  
@@ -30,7 +30,7 @@ print("Отсортированный массив:", sorted_array)
 
 #При запуске кода на Python на примере массив [5, 3, 8, 4, 2] получим отсортированный массив [2, 3, 4, 5, 8]
 
-#Сортировка Шелла (Shellsort) 
+#3)Сортировка Шелла (Shellsort) 
 def insertion_sort_gap(arr, start, gap):
     for i in range(start + gap, len(arr), gap):
         temp = arr[i]
@@ -54,5 +54,28 @@ array = [12, 34, 54, 2]
 sorted_array = shell_sort(array)
 print(sorted_array)
 #При запуске кода на Python на примере массив [12, 34, 54, 2] получим отсортированный массив [2, 12, 34, 52]
+
+#4)Последовательный (линейный) поиск 
+def linear_search(arr, target):
+    for index in range(len(arr)):
+        if arr[index] == target:
+            return index
+    return -1
+
+# Создаем список из элементов
+numbers = [10, 23, 35, 47, 58, 69, 78, 89, 90]
+
+# Определяем элемент, который ищем
+search_element = 58
+
+# Вызов функции поиска
+result_index = linear_search(numbers, search_element)
+
+# Вывод результата
+if result_index != -1:
+    print(f"Элемент {search_element} найден на позиции {result_index}.")
+else:
+    print(f"Элемент {search_element} не найден в списке.")
+#При запуске кода на Python вывело "Элемент 58 найден на позиции 4."
 
 
