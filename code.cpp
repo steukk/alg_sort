@@ -32,3 +32,33 @@ int main() {
 	return 0;
 }
 //При запуске кода на C++ на примере массив [64, 25, 12, 22, 11], получим отсортированный массив [11, 12, 22, 25, 64]
+
+
+//Сортировка слиянием 
+#include <iostream>
+#include <vector>
+
+void insertion_sort(std::vector<int>& arr) {
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        int key = arr[i];
+        int j = i - 1;
+        while (j >= 0 && arr[j] > key) {
+            arr[j + 1] = arr[j];
+            --j;
+        }
+        arr[j + 1] = key;
+    }
+}
+
+int main() {
+    std::vector<int> arr = {12, 11, 13, 5, 6};
+    insertion_sort(arr);
+    for (int num : arr) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+//При запуске кода на C++ на примере массив [12, 11, 13, 5, 6], получим отсортированный массив [5, 6, 22, 12, 13] 
+
