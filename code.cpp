@@ -181,3 +181,48 @@ int main() {
 }
 
 //При запуске кода на C++ на примере массив [12, 11, 13, 5, 6, 7], получим отсортированный массив [5, 6, 7, 11, 12, 13]
+
+//6)Интерполирующий поиск
+#include <iostream>
+#include <vector>
+
+int interpolationSearch(const std::vector<int>& arr, int x) {
+    int low = 0;
+    int high = arr.size() - 1;
+
+    while (low <= high && x >= arr[low] && x <= arr[high]) {
+        if (low == high) {
+            if (arr[low] == x) return low;
+            return -1;
+        }
+
+        // Вычисляем позицию с помощью формулы интерполяции
+        int pos = low + ((double)(high - low) / (arr[high] - arr[low])) * (x - arr[low]);
+
+        // Если элемент найден
+        if (arr[pos] == x) return pos;
+
+        // Если элемент больше arr[pos], ищем справа
+        if (arr[pos] < x)
+            low = pos + 1;
+        else
+            // Иначе ищем слева
+            high = pos - 1;
+    }
+    return -1; // Элемент не найден
+}
+
+int main() {
+    std::vector<int> data = {10, 20, 30, 40, 50, 60, 70, 80, 90, 100};
+    int x = 70;
+
+    int result = interpolationSearch(data, x);
+
+    if (result != -1)
+        std::cout << "Элемент " << x << " найден на позиции " << result << std::endl;
+    else
+        std::cout << "Элемент " << x << " не найден в массиве" << std::endl;
+
+    return 0;
+}
+//Вывод программы: Элемент 70 найден на позиции 6
