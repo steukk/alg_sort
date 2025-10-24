@@ -106,3 +106,45 @@ if __name__ == "__main__":
 
 #Вывод: Элемент 7 найден на позиции 3
 
+#6)Поиск по Фибоначчи 
+def fibonacci_search(arr, x):
+    fib2 = 0
+    fib1 = 1
+    fib = fib1 + fib2
+    n = len(arr)
+
+    while fib < n:
+        fib2 = fib1
+        fib1 = fib
+        fib = fib1 + fib2
+
+    offset = -1
+
+    while fib > 1:
+        i = min(offset + fib2, n - 1)
+        if arr[i] < x:
+            fib = fib1
+            fib1 = fib2
+            fib2 = fib - fib1
+            offset = i
+        elif arr[i] > x:
+            fib = fib2
+            fib1 = fib1 - fib2
+            fib2 = fib - fib1
+        else:
+            return i
+
+    if fib1 and offset + 1 < n and arr[offset + 1] == x:
+        return offset + 1
+
+    return -1
+
+arr = [10, 22, 35, 40, 45, 50, 80, 82, 85, 90, 100]
+x = 85
+result = fibonacci_search(arr, x)
+if result != -1:
+    print(f"Элемент найден на индексе: {result}")
+else:
+    print("Элемент не найден в массиве")
+
+#Вывод: Элемент найден на индексе: 8
