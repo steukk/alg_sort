@@ -78,4 +78,31 @@ else:
     print(f"Элемент {search_element} не найден в списке.")
 #При запуске кода на Python вывело "Элемент 58 найден на позиции 4."
 
+#5)Бинарный (двоичный, дихотомический) поиск
+def binary_search(arr, target):
+    left = 0
+    right = len(arr) - 1
+    
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    
+    return -1
+# Пример использования
+if __name__ == "__main__":
+    data = [1, 3, 5, 7, 9, 11, 13, 15]
+    target_value = 7
+    result = binary_search(data, target_value)
+    
+    if result != -1:
+        print(f"Элемент {target_value} найден на позиции {result}")
+    else:
+        print(f"Элемент {target_value} не найден в списке")
+
+#Вывод: Элемент 7 найден на позиции 3
 
