@@ -29,3 +29,30 @@ sorted_array = insertion_sort(array)
 print("Отсортированный массив:", sorted_array)
 
 #При запуске кода на Python на примере массив [5, 3, 8, 4, 2] получим отсортированный массив [2, 3, 4, 5, 8]
+
+#Сортировка Шелла (Shellsort) 
+def insertion_sort_gap(arr, start, gap):
+    for i in range(start + gap, len(arr), gap):
+        temp = arr[i]
+        j = i - gap
+        while j >= start and arr[j] > temp:
+            arr[j + gap] = arr[j]
+            j -= gap
+        arr[j + gap] = temp
+
+def shell_sort(arr):
+    n = len(arr)
+    gap = n // 2
+    while gap > 0:
+        for start in range(gap):
+            insertion_sort_gap(arr, start, gap)
+        gap //= 2
+    return arr
+
+# Пример использования:
+array = [12, 34, 54, 2]
+sorted_array = shell_sort(array)
+print(sorted_array)
+#При запуске кода на Python на примере массив [12, 34, 54, 2] получим отсортированный массив [2, 12, 34, 52]
+
+
