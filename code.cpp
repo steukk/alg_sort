@@ -1,4 +1,4 @@
-//Сортировка выбором
+//1)Сортировка выбором
 #include <iostream>
 using namespace std;
 
@@ -34,7 +34,7 @@ int main() {
 //При запуске кода на C++ на примере массив [64, 25, 12, 22, 11], получим отсортированный массив [11, 12, 22, 25, 64]
 
 
-//Сортировка слиянием 
+//2)Сортировка слиянием 
 #include <iostream>
 #include <vector>
 
@@ -62,7 +62,7 @@ int main() {
 }
 //При запуске кода на C++ на примере массив [12, 11, 13, 5, 6], получим отсортированный массив [5, 6, 11, 12, 13] 
 
-//Сортировка слиянием
+//3)Сортировка слиянием
 #include <iostream>
 #include <vector>
 
@@ -98,3 +98,41 @@ int main() {
     return 0;
 }
 //При запуске кода на C++ на примере массив [12, 11, 13, 5, 6, 7], получим отсортированный массив [5, 6, 7, 11, 12, 13] 
+
+//4)Быстрая сортировка
+#include <iostream>
+#include <vector>
+
+int partition(std::vector<int>& arr, int low, int high) {
+    int pivot = arr[high];
+    int i = low - 1;
+    for (int j = low; j < high; ++j) {
+        if (arr[j] < pivot) {
+            ++i;
+            std::swap(arr[i], arr[j]);
+        }
+    }
+    std::swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+
+void quickSort(std::vector<int>& arr, int low, int high) {
+    if (low < high) {
+        int pi = partition(arr, low, high);
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+int main() {
+    std::vector<int> data = {10, 7, 8, 9, 1, 5};
+    quickSort(data, 0, data.size() - 1);
+    for (int num : data) {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
+    return 0;
+}
+//При запуске кода на C++ на примере массив [10, 7, 8, 9, 1, 5], получим отсортированный массив [1, 7, 8, 9, 10]
+
+//5)
